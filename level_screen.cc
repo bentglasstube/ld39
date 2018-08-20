@@ -27,26 +27,9 @@ bool LevelScreen::update(const Input& input, Audio& audio, unsigned int elapsed)
 
   const Item* i = map_.item(player_.xpos(), player_.ypos());
   if (i) {
-    switch (i->type()) {
-      case Item::ItemType::Battery:
-        player_.add_power();
-        audio.play_sample("battery.wav");
-        break;
-
-      case Item::ItemType::Plutonium:
-        audio.play_sample("plutonium.wav");
-        state_.grab(i->xpos(), i->ypos());
-        break;
-    }
-
+    audio.play_sample("plutonium.wav");
+    state_.grab(i->xpos(), i->ypos());
     map_.remove_item(i);
-  }
-
-  if (player_.dead()) {
-    timer_ += elapsed;
-    if (timer_ > kResetTimeout) {
-      return false;
-    }
   }
 
   if (map_.out_of_bounds(player_.xpos(), player_.ypos())) {
@@ -67,7 +50,6 @@ void LevelScreen::draw(Graphics& graphics) const {
   map_.draw(graphics, cx, cy);
   player_.draw(graphics, cx, cy);
 
-  player_.draw_power(graphics, 0, 0);
   plutonium_.draw(graphics, 8 + SDL_GetTicks() / 100 % 8, graphics.width() - 16, 0);
   digits_.draw(graphics, state_.plutonium, graphics.width() - 8, 0);
 }
@@ -86,8 +68,7 @@ void LevelScreen::load_level(const std::string& level) {
 }
 
 Screen* LevelScreen::next_screen() const {
-  if (player_.dead()) return new TitleScreen();
-  else return new OverworldScreen(state_);
+  return new OverworldScreen(state_);
 }
 
 std::string LevelScreen::get_music_track() const {

@@ -16,19 +16,16 @@ class Player {
 
     void update(Audio& audio, const Map& map, unsigned int elapsed);
     void draw(Graphics& graphics, int xoffset, int yoffset) const;
-    void draw_power(Graphics& graphics, int x, int y) const;
 
     double xpos() const;
     double ypos() const;
     bool on_ground() const;
-    bool dead() const;
 
     void set_pos(double x, double y);
     void move_left();
     void move_right();
     void stop_moving();
     void jump(Audio& audio);
-    void add_power();
 
   private:
 
@@ -43,13 +40,10 @@ class Player {
     static constexpr int kWidth = 16;
     static constexpr int kHalfWidth = kWidth / 2;
     static constexpr int kHeight = 24;
-    static constexpr int kCellSize = 25;
 
     enum class Facing { Right, Left };
 
     SpriteMap barty_;
-    SpriteMap cells_;
-    double max_power_, power_;
     double x_, y_, vx_, vy_, ax_;
     Facing facing_;
     bool grounded_, can_dj_, did_dj_;
