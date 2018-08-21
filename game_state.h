@@ -5,7 +5,6 @@
 class GameState {
   public:
     int plutonium = 0, level = 3;
-    bool double_jump = false;
 
     int collected() const;
     bool grabbed(double x, double y) const;

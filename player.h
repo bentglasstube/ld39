@@ -46,7 +46,7 @@ class Player {
     SpriteMap barty_;
     double x_, y_, vx_, vy_, ax_;
     Facing facing_;
-    bool grounded_, can_dj_, did_dj_;
+    bool grounded_;
 
 #ifndef NDEBUG
     SDL_Rect xcol_, ycol_;
