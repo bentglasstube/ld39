@@ -10,6 +10,8 @@ LevelScreen::LevelScreen(GameState state) :
   timer_(0) {}
 
 bool LevelScreen::update(const Input& input, Audio& audio, unsigned int elapsed) {
+  if (elapsed > 50) elapsed = 50;
+
   if (input.key_held(Input::Button::Left)) {
     player_.move_left();
   } else if (input.key_held(Input::Button::Right)) {
