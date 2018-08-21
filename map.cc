@@ -9,7 +9,7 @@ Map::Map(GameState state) :
 
 #define COORD(n) (kTileSize * n + kTileSize / 2)
 #define SET_TILE(t) tiles_[height_][x] = TileType::t
-#define ADD_ITEM(i) items_.emplace_back(COORD(x), COORD(height_))
+#define ADD_ITEM(i) items_.emplace_back(Item::ItemType::i, COORD(x), COORD(height_))
 
 void Map::load(const std::string& file) {
   std::ifstream reader("content/" + file);

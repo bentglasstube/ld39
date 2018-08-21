@@ -29,8 +29,17 @@ bool LevelScreen::update(const Input& input, Audio& audio, unsigned int elapsed)
 
   const Item* i = map_.item(player_.xpos(), player_.ypos());
   if (i) {
-    audio.play_sample("plutonium.wav");
-    state_.grab(i->xpos(), i->ypos());
+    switch (i->type()) {
+      case Item::ItemType::Battery:
+        audio.play_sample("battery.wav");
+        break;
+
+      case Item::ItemType::Plutonium:
+        audio.play_sample("plutonium.wav");
+        state_.grab(i->xpos(), i->ypos());
+        break;
+    }
+
     map_.remove_item(i);
   }
 
