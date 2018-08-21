@@ -4,7 +4,7 @@
 
 class GameState {
   public:
-    int power_cells = 4, plutonium = 0, level = 3;
+    int plutonium = 0, level = 3;
     bool double_jump = false;
 
     int collected() const;

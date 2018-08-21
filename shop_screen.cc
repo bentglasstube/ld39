@@ -1,6 +1,7 @@
 #include "shop_screen.h"
 
 #include "overworld_screen.h"
+#include "title_screen.h"
 
 ShopScreen::ShopScreen(GameState state) :
   text_("text.png"), backdrop_("shopkeeper.png"),
@@ -15,19 +16,7 @@ bool ShopScreen::update(const Input& input, Audio&, unsigned int elapsed) {
 
   if (done() && input.key_pressed(Input::Button::A)) {
     index_ = counter_ = 0;
-
-    switch (phase()) {
-      case 1:
-        ++state_.power_cells;
-        break;
-      case 3:
-        state_.double_jump = true;
-        break;
-      case 5:
-        break;
-      default:
-        return false;
-    }
+    return false;
   }
 
   return true;
@@ -39,6 +28,7 @@ void ShopScreen::draw(Graphics& graphics) const {
 }
 
 Screen* ShopScreen::next_screen() const {
+  if (phase() == 2) return new TitleScreen();
   return new OverworldScreen(state_);
 }
 
@@ -48,12 +38,8 @@ std::string ShopScreen::get_music_track() const {
 
 int ShopScreen::phase() const {
   if (state_.collected() == 0) return 0;
-  if (state_.power_cells == 4) return 1;
-  if (state_.collected() < 4) return 2;
-  if (!state_.double_jump) return 3;
-  if (state_.collected() < 8) return 4;
-
-  return 5;
+  if (state_.collected() < 4) return 1;
+  return 2;
 }
 
 bool ShopScreen::done() const {
@@ -62,34 +48,18 @@ bool ShopScreen::done() const {
 
 const std::string ShopScreen::dialogs_[] = {
 
-R"(Great Scott, Barty!  I have
-misplaced all my plutonium
-around town.  If you bring it
-back here, I will be able to
-improve your hoverboard.)",
+R"(This dinner would be so much
+better with some beef jerky.
+I will have to go look around
+town for parts to fix the
+dehydrator to make some.)",
 
-R"(You found one.  I don't
-know how, but you found one.
-If you give it to me I will
-give your board another cell.)",
+R"(Well that's some of the
+missing parts, but I still
+need more pieces.)",
 
-R"(Bring me three more bits of
-plutonium and I'll be able
-to upgrade your board again.)",
+R"(Finally, all the pieces!
+Now I can make me some jerky.
 
-R"(When I'm done with this baby,
-you're gonna see some serious
-shit!  You can jump in mid-air
-now, but only once.)",
-
-R"(Damn!  There are still more
-missing pieces of plutonium.
-Round them all up and bring
-them back here.)",
-
-R"(Run for it, Barty!        
-                             
-                             
-             The End.)",
-
+                     Fin)",
 };
