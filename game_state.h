@@ -5,6 +5,7 @@
 class GameState {
   public:
     int plutonium = 0;
+    int redbull = 0;
     int level = 3;
     int dialog = 0;
 

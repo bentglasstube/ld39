@@ -4,7 +4,7 @@
 #include <cmath>
 #include <iostream>
 
-Player::Player(GameState state) :
+Player::Player() :
   barty_("barty.png", 8, kWidth, kHeight),
   x_(0), y_(0), vx_(0), vy_(0), ax_(0),
   facing_(Facing::Right), grounded_(false)
@@ -88,8 +88,16 @@ void Player::stop_moving() {
   ax_ = 0;
 }
 
-void Player::jump(Audio& audio) {
-  if (!on_ground()) return;
+void Player::jump(GameState& state, Audio& audio) {
+  if (!on_ground()) {
+    if (state.redbull > 0) {
+      --state.redbull;
+      audio.play_sample("jump.wav");
+    } else {
+      return;
+    }
+  }
+
   vy_ -= kJumpSpeed;
 }
 

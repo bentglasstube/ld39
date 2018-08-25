@@ -12,7 +12,7 @@
 class Player {
   public:
 
-    Player(GameState state);
+    Player();
 
     void update(Audio& audio, const Map& map, unsigned int elapsed);
     void draw(Graphics& graphics, int xoffset, int yoffset) const;
@@ -25,7 +25,7 @@ class Player {
     void move_left();
     void move_right();
     void stop_moving();
-    void jump(Audio& audio);
+    void jump(GameState& state, Audio& audio);
 
   private:
 
