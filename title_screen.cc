@@ -20,5 +20,5 @@ void TitleScreen::draw(Graphics& graphics) const {
 
 Screen* TitleScreen::next_screen() const {
   GameState state;
-  return new OverworldScreen(state);
+  return new ShopScreen(state);
 }

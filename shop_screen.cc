@@ -18,7 +18,9 @@ bool ShopScreen::update(const Input& input, Audio& audio, unsigned int elapsed) 
 
   if (done() && input.key_pressed(Input::Button::A)) {
     index_ = counter_ = 0;
-    return false;
+
+    if (state_.dialog < 2) ++state_.dialog;
+    return state_.dialog != 2;
   }
 
   return true;
@@ -30,14 +32,14 @@ void ShopScreen::draw(Graphics& graphics) const {
 }
 
 Screen* ShopScreen::next_screen() const {
-  if (phase() == 2) return new TitleScreen();
+  if (phase() == 3) return new TitleScreen();
   return new OverworldScreen(state_);
 }
 
 int ShopScreen::phase() const {
-  if (state_.collected() == 0) return 0;
-  if (state_.collected() < 4) return 1;
-  return 2;
+  if (state_.collected() == 0) return state_.dialog;
+  if (state_.collected() < 4) return 2;
+  return 3;
 }
 
 bool ShopScreen::done() const {
@@ -51,6 +53,10 @@ better with some beef jerky.
 I will have to go look around
 town for parts to fix the
 dehydrator to make some.)",
+
+R"(Take the new hoverboard out
+for a spin.  It will be faster
+to get around than walking.)",
 
 R"(Well that's some of the
 missing parts, but I still
