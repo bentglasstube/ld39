@@ -33,7 +33,7 @@ Screen* ShopScreen::next_screen() const {
 }
 
 std::string ShopScreen::get_music_track() const {
-  return "";
+  return "filabrazilla.ogg";
 }
 
 int ShopScreen::phase() const {

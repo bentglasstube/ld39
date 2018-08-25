@@ -48,7 +48,7 @@ Screen* OverworldScreen::next_screen() const {
 }
 
 std::string OverworldScreen::get_music_track() const {
-  return "";
+  return "filabrazilla.ogg";
 }
 
 const OverworldScreen::Level OverworldScreen::levels_[] = {
