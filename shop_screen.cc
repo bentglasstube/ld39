@@ -7,7 +7,9 @@ ShopScreen::ShopScreen(GameState state) :
   text_("text.png"), backdrop_("shopkeeper.png"),
   state_(state), counter_(0), index_(0) {}
 
-bool ShopScreen::update(const Input& input, Audio&, unsigned int elapsed) {
+bool ShopScreen::update(const Input& input, Audio& audio, unsigned int elapsed) {
+  if (!audio.music_playing()) audio.play_music("filabrazilla.ogg");
+
   counter_ += elapsed;
   if (counter_ >= kTextRate) {
     ++index_;
@@ -30,10 +32,6 @@ void ShopScreen::draw(Graphics& graphics) const {
 Screen* ShopScreen::next_screen() const {
   if (phase() == 2) return new TitleScreen();
   return new OverworldScreen(state_);
-}
-
-std::string ShopScreen::get_music_track() const {
-  return "filabrazilla.ogg";
 }
 
 int ShopScreen::phase() const {

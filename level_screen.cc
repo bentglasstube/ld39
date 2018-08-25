@@ -10,6 +10,8 @@ LevelScreen::LevelScreen(GameState state) :
   timer_(0) {}
 
 bool LevelScreen::update(const Input& input, Audio& audio, unsigned int elapsed) {
+  if (!audio.music_playing()) audio.play_music("filabrazilla.ogg");
+
   if (input.key_held(Input::Button::Left)) {
     player_.move_left();
   } else if (input.key_held(Input::Button::Right)) {
@@ -78,8 +80,4 @@ void LevelScreen::load_level(const std::string& level) {
 
 Screen* LevelScreen::next_screen() const {
   return new OverworldScreen(state_);
-}
-
-std::string LevelScreen::get_music_track() const {
-  return "filabrazilla.ogg";
 }

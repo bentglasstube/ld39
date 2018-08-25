@@ -24,7 +24,6 @@ class LevelScreen : public Screen {
     void load_level(const std::string& level);
 
     Screen* next_screen() const override;
-    std::string get_music_track() const override;
 
   private:
 

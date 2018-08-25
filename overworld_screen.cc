@@ -6,7 +6,9 @@
 OverworldScreen::OverworldScreen(GameState state) :
   text_("text.png"), backdrop_("map.png"), state_(state) {}
 
-bool OverworldScreen::update(const Input& input, Audio&, unsigned int) {
+bool OverworldScreen::update(const Input& input, Audio& audio, unsigned int) {
+  if (!audio.music_playing()) audio.play_music("filabrazilla.ogg");
+
   if (input.key_pressed(Input::Button::A)) {
     return false;
   }
@@ -45,10 +47,6 @@ Screen* OverworldScreen::next_screen() const {
     s->load_level(l.file);
     return s;
   }
-}
-
-std::string OverworldScreen::get_music_track() const {
-  return "filabrazilla.ogg";
 }
 
 const OverworldScreen::Level OverworldScreen::levels_[] = {

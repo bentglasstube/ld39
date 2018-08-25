@@ -1,7 +1,7 @@
 git_repository(
     name = "libgam",
     remote = "https://github.com/bentglasstube/gam.git",
-    tag = "v1.2"
+    commit = "96f9154af3f846aac073c6389a47880dec71ad7b",
 )
 
 git_repository(

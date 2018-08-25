@@ -1,12 +1,13 @@
 #include "title_screen.h"
 
-#include "overworld_screen.h"
+#include "shop_screen.h"
 
 #include <cmath>
 
 TitleScreen::TitleScreen() : text_("text.png"), backdrop_("title.png") {}
 
-bool TitleScreen::update(const Input& input, Audio&, unsigned int) {
+bool TitleScreen::update(const Input& input, Audio& audio, unsigned int) {
+  if (!audio.music_playing()) audio.play_music("filabrazilla.ogg");
   return !input.any_pressed();
 }
 
@@ -20,8 +21,4 @@ void TitleScreen::draw(Graphics& graphics) const {
 Screen* TitleScreen::next_screen() const {
   GameState state;
   return new OverworldScreen(state);
-}
-
-std::string TitleScreen::get_music_track() const {
-  return "filabrazilla.ogg";
 }
