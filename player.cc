@@ -23,7 +23,7 @@ void Player::update(Audio& audio, const Map& map, unsigned int elapsed) {
   vx_ *= kDampen;
   vy_ *= kDampen;
 
-  if (vy_ >= 0.2 && ovy < 0.2) audio.play_sample("fall.wav");
+  if (vy_ >= kFallSpeed && ovy < kFallSpeed) audio.play_sample("fall.wav");
 }
 
 void Player::draw(Graphics& graphics, int xoffset, int yoffset) const {
@@ -150,7 +150,7 @@ Rect Player::boxv() const {
 
 int Player::aframe() const {
   const int f = SDL_GetTicks() / 100;
-  if (vy_ >= 0.2) return 4 + f % 2;
+  if (vy_ >= kFallSpeed) return 4 + f % 2;
   if (std::abs(vx_) >= 0.15) return f % 4;
   return 0;
 }

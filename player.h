@@ -33,6 +33,7 @@ class Player {
     static constexpr double kJumpSpeed = 0.5;
     static constexpr double kAccel = 0.001;
     static constexpr double kDampen = 0.95;
+    static constexpr double kFallSpeed = 0.3;
 
     static constexpr double kJumpCost = 2.5;
     static constexpr double kIdleCost = 0.001;
