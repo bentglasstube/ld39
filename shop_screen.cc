@@ -11,6 +11,9 @@ bool ShopScreen::update(const Input& input, Audio& audio, unsigned int elapsed) 
   if (!audio.music_playing()) audio.play_music("filabrazilla.ogg");
 
   counter_ += elapsed;
+  if (input.key_pressed(Input::Button::A) || input.key_pressed(Input::Button::B))
+    counter_ += kTextRate * 8;
+
   if (counter_ >= kTextRate) {
     ++index_;
     counter_ -= kTextRate;
