@@ -4,6 +4,7 @@
 #include "backdrop.h"
 #include "graphics.h"
 #include "screen.h"
+#include "spritemap.h"
 #include "text.h"
 
 #include "game_state.h"
@@ -26,6 +27,7 @@ class ShopScreen : public Screen {
     Text text_;
     Backdrop backdrop_;
     GameState state_;
+    SpriteMap mouf_;
     size_t counter_, index_;
 
     int phase() const;

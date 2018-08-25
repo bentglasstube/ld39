@@ -5,7 +5,7 @@
 
 ShopScreen::ShopScreen(GameState state) :
   text_("text.png"), backdrop_("shopkeeper.png"),
-  state_(state), counter_(0), index_(0) {}
+  state_(state), mouf_("mouf.png", 1, 11, 3), counter_(0), index_(0) {}
 
 bool ShopScreen::update(const Input& input, Audio& audio, unsigned int elapsed) {
   if (!audio.music_playing()) audio.play_music("filabrazilla.ogg");
@@ -29,6 +29,25 @@ bool ShopScreen::update(const Input& input, Audio& audio, unsigned int elapsed) 
 void ShopScreen::draw(Graphics& graphics) const {
   backdrop_.draw(graphics);
   text_.draw(graphics, dialogs_[phase()].substr(0, index_), 8, 144);
+
+  const int mx = phase() == 1 ? 216 : 101;
+  const int my = phase() == 1 ? 56 : 54;
+
+  int kyle = 0;
+  int joshy = 0;
+
+  if (!done()) {
+    int anim = (SDL_GetTicks() / 70) % 4;
+    if (anim == 3) anim = 1;
+
+    if (phase() == 1)
+      joshy = anim;
+    else
+      kyle = anim;
+  }
+
+  mouf_.draw(graphics, kyle, 101, 54);
+  mouf_.draw(graphics, joshy, 216, 56);
 }
 
 Screen* ShopScreen::next_screen() const {
