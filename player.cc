@@ -14,12 +14,16 @@ Player::Player(GameState state) :
 {}
 
 void Player::update(Audio& audio, const Map& map, unsigned int elapsed) {
+  const double ovy = vy_;
+
   updatex(audio, map, elapsed);
   updatey(audio, map, elapsed);
 
   // Shitty "friction"
   vx_ *= kDampen;
   vy_ *= kDampen;
+
+  if (vy_ >= 0.2 && ovy < 0.2) audio.play_sample("fall.wav");
 }
 
 void Player::draw(Graphics& graphics, int xoffset, int yoffset) const {
