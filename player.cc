@@ -20,8 +20,6 @@ void Player::update(Audio& audio, const Map& map, unsigned int elapsed) {
   // Shitty "friction"
   vx_ *= kDampen;
   vy_ *= kDampen;
-
-  vx_ *= kDampen * kDampen;
 }
 
 void Player::draw(Graphics& graphics, int xoffset, int yoffset) const {
