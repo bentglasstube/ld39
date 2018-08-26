@@ -36,6 +36,4 @@ class LevelScreen : public Screen {
     Player player_;
     Map map_;
     Camera camera_;
-
-    int timer_;
 };

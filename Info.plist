@@ -5,11 +5,11 @@
     <key>CFBundleExecutable</key>
     <string>launcher</string>
     <key>CFBundleIdentifier</key>
-    <string>org.eatabrick.hove</string>
+    <string>org.eatabrick.hove.kyle</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>The Power of Hove</string>
+    <string>Jerky Quest</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
   </dict>

@@ -33,9 +33,6 @@ void ShopScreen::draw(Graphics& graphics) const {
   backdrop_.draw(graphics);
   text_.draw(graphics, dialogs_[phase()].substr(0, index_), 8, 144);
 
-  const int mx = phase() == 1 ? 216 : 101;
-  const int my = phase() == 1 ? 56 : 54;
-
   int kyle = 0;
   int joshy = 0;
 

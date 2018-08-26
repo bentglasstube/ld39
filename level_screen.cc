@@ -6,8 +6,7 @@
 LevelScreen::LevelScreen(GameState state) :
   digits_("digits.png", 11, 8, 8),
   plutonium_("objects.png", 8, 8, 8),
-  state_(state), player_(), map_(state), camera_(),
-  timer_(0) {}
+  state_(state), player_(), map_(state), camera_() {}
 
 bool LevelScreen::update(const Input& input, Audio& audio, unsigned int elapsed) {
   if (!audio.music_playing()) audio.play_music("filabrazilla.ogg");
